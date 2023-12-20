@@ -23,6 +23,6 @@ export const router = createBrowserRouter([
   {
     path: "/gamePlay",
     element: < GameplayPage />,
-    loader: () => !localStorage.getItem("access_token") && redirect("/login"),
+    loader: () => !localStorage.getItem("access_token") && redirect("/"),
   },
 ]);
