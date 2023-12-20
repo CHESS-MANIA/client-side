@@ -1,20 +1,36 @@
-import React from "react";
-import ChessboardComponent from "./components/Chessboard";
-import PlayRandomMoveEngine from "./components/Chessboard";
-import Navbar from "./components/Navbar";
+import { useEffect, useRef, useState } from 'react'
+import ChessBoard from 'chessboardjsx'
+import { Chess } from 'chess.js';
 
-const App = () => {
+
+function App() {
+  const [fen, setFen] = useState("start")
+  const game = useRef(null)
+
+  useEffect(() => {
+    game.current = new Chess()
+  },[])
+
+  const onDrop = ({ sourceSquare, targetSquare }) => {
+    const move = game.current.move({
+      from: sourceSquare,
+      to: targetSquare,
+    });
+  
+    if (move !== null) {
+      setFen(game.current.fen());
+    }
+  };
+
+  console.log(game, '<<')
+
   return (
     <>
-      <Navbar />
-      <div className="text-center my-8">
-        <h1 className="text-2xl font-bold mb-4">Chess Game</h1>
-        <div className="inline-block shadow-md rounded-xl overflow-hidden mt-10">
-          <ChessboardComponent />
-        </div>
+      <div className='App'>
+        <ChessBoard position={fen} onDrop={onDrop}/>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App

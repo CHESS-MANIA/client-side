@@ -1,6 +1,5 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
 import Register from "./views/RegisterPage";
-import ChessboardComponent from "./components/Chessboard";
 import Login from "./views/LoginPage";
 import HomePage from "./views/Homepage";
 
