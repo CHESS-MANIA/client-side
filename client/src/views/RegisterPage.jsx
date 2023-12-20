@@ -17,7 +17,7 @@ export default function Register() {
         "http://localhost:3000/register",
         formRegister
       );
-      localStorage.setItem("access_token", data.access_token);
+      
       navigate("/login");
     } catch (error) {
       console.log(error);

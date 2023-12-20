@@ -3,6 +3,7 @@ import Register from "./views/RegisterPage";
 import Login from "./views/LoginPage";
 import HomePage from "./views/Homepage";
 
+
 export const router = createBrowserRouter([
   {
     path: "/login",
