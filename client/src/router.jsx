@@ -15,14 +15,14 @@ export const router = createBrowserRouter([
     element: <Register />,
     loader: () => localStorage.getItem("access_token") && redirect("/"),
   },
+  // {
+  //   path: "/",
+  //   element: < HomePage />,
+  //   loader: () => !localStorage.getItem("access_token") && redirect("/login"),
+  // },
   {
     path: "/",
-    element: < HomePage />,
-    loader: () => !localStorage.getItem("access_token") && redirect("/login"),
-  },
-  {
-    path: "/gameplay",
     element: < GameplayPage />,
-    loader: () => !localStorage.getItem("access_token") && redirect("/login"),
+    // loader: () => !localStorage.getItem("access_token") && redirect("/login"),
   },
 ]);
