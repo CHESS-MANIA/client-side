@@ -26,9 +26,10 @@ function Chessboard() {
 
   return (
     <>
-      <div className='App'>
-        <ChessBoard position={fen} onDrop={onDrop}/>
-      </div>
+      
+      <div className="rounded-lg overflow-hidden border border-gray-300">
+      <ChessBoard position={fen} onDrop={onDrop} />
+    </div>
     </>
   )
 }
