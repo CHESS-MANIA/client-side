@@ -47,7 +47,7 @@ export default function Navbar() {
                       type="button"
                       onClick={() => {
                         localStorage.removeItem("access_token");
-                        navigate("/login");
+                        navigate("/");
                       }}
                     >
                       <span> Logout</span>

@@ -6,22 +6,22 @@ import GameplayPage from "./views/GameplayPage";
 
 export const router = createBrowserRouter([
   {
-    path: "/login",
+    path: "/",
     element: <Login />,
-    loader: () => localStorage.getItem("access_token") && redirect("/"),
+    loader: () => localStorage.getItem("access_token") && redirect("/gamePlay"),
   },
   {
     path: "/register",
     element: <Register />,
     loader: () => localStorage.getItem("access_token") && redirect("/"),
   },
+  // {
+  //   path: "/",
+  //   element: < HomePage />,
+  //   loader: () => !localStorage.getItem("access_token") && redirect("/login"),
+  // },
   {
-    path: "/",
-    element: < HomePage />,
-    loader: () => !localStorage.getItem("access_token") && redirect("/login"),
-  },
-  {
-    path: "/gameplay",
+    path: "/gamePlay",
     element: < GameplayPage />,
     loader: () => !localStorage.getItem("access_token") && redirect("/login"),
   },
