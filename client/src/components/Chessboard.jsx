@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Chessboard from "chessboardjsx";
 import { Chess } from "chess.js";
 import { io } from "socket.io-client";
+import { toast } from "react-toastify";
 
 
 
@@ -37,9 +38,29 @@ function ChessBoard() {
 
     socket.current.on("gameOver", ({ result, winner }) => {
       if (result === "checkmate") {
-        alert(`Checkmate! ${winner} wins.`);
+        // alert(`Checkmate! ${winner} wins.`);
+        toast.warn(`Checkmate! ${winner} wins.`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
       } else if (result === "stalemate") {
-        alert("Stalemate! The game is a draw.");
+        // alert("Stalemate! The game is a draw.");
+        toast.warn(`Stalemate! The game is a draw.`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
       }
     });
 
@@ -81,7 +102,17 @@ function ChessBoard() {
     const isLegalMove = legalMoves.some(move => move.to === targetSquare);
 
     if (!isLegalMove) {
-      alert("Illegal move! Please make a different move.");
+      // alert("Illegal move! Please make a different move.");
+      toast.warn('Illegal move! Please make a different move.', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       return;
     }
 
@@ -99,10 +130,30 @@ function ChessBoard() {
 
     if (gameRef.current.in_checkmate()) {
       socket.current.emit("gameOver", { result: "checkmate", winner: playerColor });
-      alert(`Checkmate! ${playerColor} wins.`);
+      // alert(`Checkmate! ${playerColor} wins.`);
+      toast.warn(`Checkmate! ${playerColor} wins.`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     } else if (gameRef.current.isStalemate()) {
       socket.current.emit("gameOver", { result: "stalemate" });
-      alert(`Stalemate! The game is a draw.`);
+      // alert(`Stalemate! The game is a draw.`);
+      toast.warn(`Stalemate! The game is a draw.`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     }
   };
 
@@ -124,7 +175,11 @@ function ChessBoard() {
           </div>
         </div>
       ) : (
-        <h3>Waiting for opponent...</h3>
+        <div className="flex flex-col justify-center items-center my-[300px]">
+          <h1 className="text-[35px] text-white">Waiting for opponent...</h1>
+          {/* <span className="loading loading-ring loading-lg"></span> */}
+          <span className="loading loading-dots loading-lg"></span>
+        </div>
       )}
     </div>
   );

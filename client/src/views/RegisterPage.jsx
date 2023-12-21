@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -17,9 +18,20 @@ export default function Register() {
         "http://localhost:3000/register",
         formRegister
       );
-      
-      navigate("/login");
+
+      navigate("/");
+      toast.success('Register success!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     } catch (error) {
+      
       console.log(error);
     }
   };
@@ -34,10 +46,20 @@ export default function Register() {
 
   return (
     <>
-      <div>
+      <div
+        style={{
+          backgroundImage: 'url("https://images.unsplash.com/photo-1610633389918-7d5b62977dc3?q=80&w=3425&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          position: 'relative',
+        }}
+      >
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+
         <div className="flex justify-center items-center h-screen">
-          <div className="w-96 backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg p-5 bg-yellow-600 text-white">
-            <h2 className="text-2xl font-bold pb-5 text-yellow-950">
+          <div className="w-96 backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg p-5 bg-grey-600 text-white">
+            <h2 className="text-2xl font-bold pb-5 text-white-950">
               {" "}
               Register{" "}
             </h2>
@@ -45,7 +67,7 @@ export default function Register() {
               <div className="mb-4">
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-yellow-950"
+                  className="block mb-2 text-sm font-medium text-white-950"
                 >
                   Username
                 </label>
@@ -62,7 +84,7 @@ export default function Register() {
               <div className="mb-4">
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-yellow-950"
+                  className="block mb-2 text-sm font-medium text-white-950"
                 >
                   {" "}
                   Password{" "}
@@ -84,10 +106,10 @@ export default function Register() {
                 >
                   Submit
                 </button>
-                <div className="flex items-center text-sm text-yellow-950">
+                <div className="flex items-center text-sm text-white-950">
                   <p>already have an account?</p>
                   <Link to={"/login"}>
-                    <p className="underline cursor-pointer ml-1 text-yellow-950">
+                    <p className="underline cursor-pointer ml-1 text-white-950">
                       Login
                     </p>
                   </Link>
