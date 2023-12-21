@@ -17,7 +17,7 @@ export default function Login() {
         formLogin
       );
       localStorage.setItem("access_token", data.access_token);
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.log(error);
     }

@@ -10,12 +10,13 @@ function ChessBoard() {
   const [fen, setFen] = useState("start");
   const [playerColor, setPlayerColor] = useState(null);
   const [gameStarted, setGameStarted] = useState(false);
+  const [currentTurn, setCurrentTurn] = useState("white");
 
 
   const socket = useRef(null);
 
   useEffect(() => {
-    
+
     if (!socket.current) {
       socket.current = io("http://localhost:3000");
     }
@@ -62,6 +63,7 @@ function ChessBoard() {
 
     socket.current.on("move", ({ sourceSquare, targetSquare }) => {
       updateGame(sourceSquare, targetSquare);
+      setCurrentTurn(gameRef.current.turn() === "w" ? "white" : "black");
     });
   }, [playerColor]);
 
@@ -93,6 +95,8 @@ function ChessBoard() {
     setFen(gameRef.current.fen());
     socket.current.emit("move", { sourceSquare, targetSquare });
 
+    setCurrentTurn(gameRef.current.turn() === "w" ? "white" : "black");
+
     if (gameRef.current.in_checkmate()) {
       socket.current.emit("gameOver", { result: "checkmate", winner: playerColor });
       alert(`Checkmate! ${playerColor} wins.`);
@@ -107,6 +111,7 @@ function ChessBoard() {
       {gameStarted && playerColor ? (
         <div>
           <h3>You are playing as {playerColor}</h3>
+          <h4>Play turn : {currentTurn}</h4>
           <div>
             <Chessboard
               position={fen}
