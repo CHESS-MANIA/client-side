@@ -19,7 +19,7 @@ function ChessBoard() {
   useEffect(() => {
 
     if (!socket.current) {
-      socket.current = io("http://localhost:3000");
+      socket.current = io("https://chess.wahyuragil.my.id");
     }
     gameRef.current = new Chess()
     socket.current.on("connection", () => {

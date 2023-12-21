@@ -15,7 +15,7 @@ export default function Register() {
     event.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/register",
+        "https://chess.wahyuragil.my.id/register",
         formRegister
       );
 
@@ -31,7 +31,7 @@ export default function Register() {
         theme: "light",
         });
     } catch (error) {
-      
+
       console.log(error);
     }
   };

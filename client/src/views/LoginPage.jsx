@@ -14,7 +14,7 @@ export default function Login() {
     event.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/login",
+        "https://chess.wahyuragil.my.id/login",
         formLogin
       );
       localStorage.setItem("access_token", data.access_token);
